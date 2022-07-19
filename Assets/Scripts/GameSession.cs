@@ -73,8 +73,9 @@ public class GameSession : MonoBehaviour
         magazine--;
         magazineLabel.text = magazine.ToString();
     }
-    void ResetGameSession()
+    public void ResetGameSession()
     {
+        Debug.Log("Wasted!");
         FindObjectOfType<ScenePersist>().ResetScenePersist();
         SceneManager.LoadScene(0);
         Destroy(gameObject);

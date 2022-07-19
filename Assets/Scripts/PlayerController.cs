@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
     //PlayerInput playerInput;
     Vector2 moveInput;
     bool isAlive = true;
+    float moveSpeed;
     [Header("Forces")]
     [SerializeField] float baseGravityScale;
-    float moveSpeed;
     [SerializeField] float defaultMoveSpeed = 5f;
     [SerializeField] float BoostedMoveSpeed = 7f;
     [SerializeField] float jumpForce = 25f;
@@ -19,13 +19,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int scoreForBoost = 1500;
     [SerializeField] Color boostedColor;
 
-    [Header("Equipment")]
+    [Header("Ammo")]
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gunTransform;
 
     [Header("Player Death Options")]
     [SerializeField] Vector2 deathKick = new Vector2(0f, 30f);
     [SerializeField] Color deathColor;
+    [SerializeField] int enemyKillValue = 50;
 
     SpriteRenderer playerSprite;
     Rigidbody2D playerRB2D;
@@ -104,7 +105,10 @@ public class PlayerController : MonoBehaviour
 
         int score = FindObjectOfType<GameSession>().GetScore();
         if (score > scoreForBoost)
+        {
             moveSpeed = BoostedMoveSpeed;
+            playerSprite.color = boostedColor;
+        }
         else
             moveSpeed = defaultMoveSpeed;
 
@@ -156,7 +160,13 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (!isAlive)
+            return;
+
         if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        {
             Destroy(other.gameObject);
+            FindObjectOfType<GameSession>().SetScore(enemyKillValue);
+        }
     }
 }

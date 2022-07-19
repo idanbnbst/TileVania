@@ -7,6 +7,7 @@ public class PistolBullet : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 20f;
     [SerializeField] float bulletDestroyTime = 1f;
+    [SerializeField] int bulletHitPoints = 150;
     float xSpeed;
     Rigidbody2D bulletRB2D;
     PlayerController player;
@@ -37,6 +38,7 @@ public class PistolBullet : MonoBehaviour
         {
             Destroy(other.gameObject);
             DestroyBullet();
+            FindObjectOfType<GameSession>().SetScore(bulletHitPoints);
         }
         else
             Invoke("DestroyBullet", bulletDestroyTime);

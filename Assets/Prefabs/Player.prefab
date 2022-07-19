@@ -214,15 +214,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravityScale: 0
-  moveSpeed: 5
+  defaultMoveSpeed: 5
+  BoostedMoveSpeed: 7
   jumpForce: 25
-  boostedJumpForce: 27.5
+  boostedJumpForce: 27
   scoreForBoost: 1500
   boostedColor: {r: 0.9411765, g: 0.94509804, b: 0, a: 1}
   bullet: {fileID: 7793263801326137161, guid: 5ae43badcdb73cb499a6272e46f96c6f, type: 3}
   gunTransform: {fileID: 2364940347590116472}
   deathKick: {x: 0, y: 30}
   deathColor: {r: 1, g: 0, b: 0.9607843, a: 1}
+  enemyKillValue: 50
 --- !u!1 &8544988181405539924
 GameObject:
   m_ObjectHideFlags: 0
