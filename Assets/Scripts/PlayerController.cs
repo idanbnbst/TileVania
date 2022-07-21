@@ -23,14 +23,16 @@ public class PlayerController : MonoBehaviour
     [Header("Ammo")]
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gunTransform;
+    [SerializeField] float fireRate = 0.5f;
+    [SerializeField] int enemyKillValue = 50;
 
     [Header("Player Death Options")]
     [SerializeField] Vector2 deathKick = new Vector2(0f, 30f);
     [SerializeField] Color deathColor;
-    [SerializeField] int enemyKillValue = 50;
 
-    [Header("Animation Settings")]
-    [SerializeField] float deactivateIsShootingSec = 0.5f;
+    [Header("SFX")]
+    [SerializeField] AudioClip pistolShotSFX;
+    [SerializeField] AudioClip deathSFX;
 
     SpriteRenderer playerSprite;
     Rigidbody2D playerRB2D;
@@ -105,11 +107,8 @@ public class PlayerController : MonoBehaviour
             if (isShooting)
                 return;
 
-            // If we want to make the player shoot as fast as he clicks the binded key, 
-            // we have to use this SetBool() before 'return;'
-            //playerAnimator.SetBool("isShooting", false);
-
             playerAnimator.SetBool("isShooting", true);
+            AudioSource.PlayClipAtPoint(pistolShotSFX, Camera.main.transform.position);
             Instantiate(bullet, gunTransform.position, transform.rotation);
             FindObjectOfType<GameSession>().DecreaseMagazineRounds();
             StartCoroutine(DeactiveShooting());
@@ -118,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DeactiveShooting()
     {
-        yield return new WaitForSeconds(deactivateIsShootingSec);
+        yield return new WaitForSeconds(fireRate);
         playerAnimator.SetBool("isShooting", false);
     }
 

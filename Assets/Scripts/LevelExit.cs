@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelExit : MonoBehaviour
 {
     [Header("Invoke Level Delay")]
-    [SerializeField] float reloadNextLevelTimeSec = 0.2f;
+    [SerializeField] float reloadNextLevelTimeSec = 1f;
+    [SerializeField] AudioClip exitSFX;
     void ReloadNextScene()
     {
         int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
@@ -24,7 +25,7 @@ public class LevelExit : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Level up");
+            AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
             Invoke("ReloadNextScene", reloadNextLevelTimeSec);
         }
     }
