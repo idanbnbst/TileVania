@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float BoostedMoveSpeed = 7f;
     [SerializeField] float jumpForce = 25f;
     [SerializeField] float boostedJumpForce = 27.5f;
+    [SerializeField] float climbSpeed = 3f;
     [SerializeField] int scoreForBoost = 1500;
     [SerializeField] Color boostedColor;
 
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Color deathColor;
     [SerializeField] int enemyKillValue = 50;
 
+    [Header("Animation Settings")]
+    [SerializeField] float deactivateIsShootingSec = 0.5f;
+
     SpriteRenderer playerSprite;
     Rigidbody2D playerRB2D;
     Animator playerAnimator;
@@ -36,7 +40,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // Should it be in Awake() function?
         //playerInput = GetComponent<PlayerInput>();
         playerSprite = GetComponent<SpriteRenderer>();
         playerRB2D = GetComponent<Rigidbody2D>();
@@ -65,23 +68,27 @@ public class PlayerController : MonoBehaviour
     // Function OnJump() is implemented from Player Input component
     void OnJump(InputValue value)
     {
+        if (value.isPressed)
+        {
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
         if (!isAlive)
             return;
 
         if (!playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing")))
             return;
 
-        if (value.isPressed)
+        int score = FindObjectOfType<GameSession>().GetScore();
+        if (score < scoreForBoost)
+            playerRB2D.velocity += new Vector2(0f, jumpForce);
+        else
         {
-            // We need to get out of climbing collision for jump from a ladder
-            int score = FindObjectOfType<GameSession>().GetScore();
-            if (score < scoreForBoost)
-                playerRB2D.velocity += new Vector2(0f, jumpForce);
-            else
-            {
-                playerRB2D.velocity += new Vector2(0f, boostedJumpForce);
-                playerSprite.color = boostedColor;
-            }
+            playerRB2D.velocity += new Vector2(0f, boostedJumpForce);
+            playerSprite.color = boostedColor;
         }
     }
 
@@ -94,9 +101,17 @@ public class PlayerController : MonoBehaviour
 
         if (value.isPressed)
         {
+            playerAnimator.SetBool("isShooting", true);
             Instantiate(bullet, gunTransform.position, transform.rotation);
             FindObjectOfType<GameSession>().DecreaseMagazineRounds();
+            StartCoroutine(DeactiveIsShooting());
         }
+    }
+
+    IEnumerator DeactiveIsShooting()
+    {
+        yield return new WaitForSeconds(deactivateIsShootingSec);
+        playerAnimator.SetBool("isShooting", false);
     }
     void Move()
     {
@@ -129,6 +144,9 @@ public class PlayerController : MonoBehaviour
     }
     void ClimbLadder()
     {
+        if (!isAlive)
+            return;
+
         if (!playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             playerRB2D.gravityScale = baseGravityScale;
@@ -136,7 +154,7 @@ public class PlayerController : MonoBehaviour
         }
         // Make player move vertically
         playerRB2D.gravityScale = 0f; // Set zero gravity for not sliding down the ladder
-        Vector2 verticalVelocity = new Vector2(playerRB2D.velocity.x, moveInput.y * moveSpeed);
+        Vector2 verticalVelocity = new Vector2(playerRB2D.velocity.x, moveInput.y * climbSpeed);
         playerRB2D.velocity = verticalVelocity;
 
         // Set 'Climbing' animation while up/down key is pressed

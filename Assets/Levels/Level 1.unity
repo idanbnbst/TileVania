@@ -11497,6 +11497,46 @@ Tilemap:
   m_GameObject: {fileID: 1845233864}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: -16, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -16, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -16, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -16, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 0, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -11539,13 +11579,13 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 4
+  - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 24ba3e73561f1b14e82a9338d04ac5e1, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 4
+  - m_RefCount: 8
     m_Data: {fileID: 21300000, guid: bcaef7d43e2c1124d919d8978ed566b3, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 4
+  - m_RefCount: 8
     m_Data:
       e00: 1
       e01: 0
@@ -11564,13 +11604,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 4
+  - m_RefCount: 8
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: -4, z: 0}
-  m_Size: {x: 12, y: 9, z: 1}
+  m_Origin: {x: -16, y: -4, z: 0}
+  m_Size: {x: 28, y: 9, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -11626,20 +11666,40 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1845233868}
     m_ColliderPaths:
-    - - X: 2741935
+    - - X: 7258064
+        Y: 50161292
+      - X: 2741935
         Y: 50161292
       - X: 2741935
         Y: 9838710
       - X: 7258064
         Y: 9838710
-      - X: 7258064
-        Y: 50161292
+    - - X: -152741836
+        Y: -30161331
+      - X: -152741836
+        Y: 10161331
+      - X: -152741895
+        Y: 10161390
+      - X: -157258105
+        Y: 10161390
+      - X: -157258164
+        Y: 10161331
+      - X: -157258164
+        Y: -30161331
+      - X: -157258105
+        Y: -30161390
+      - X: -152741895
+        Y: -30161390
   m_CompositePaths:
     m_Paths:
     - - {x: 0.7257771, y: 0.983871}
       - {x: 0.7257771, y: 5.0161295}
       - {x: 0.2741935, y: 5.0161}
       - {x: 0.2742228, y: 0.983871}
+    - - {x: -15.2742195, y: -3.016139}
+      - {x: -15.2742195, y: 1.016139}
+      - {x: -15.725816, y: 1.0161039}
+      - {x: -15.725781, y: -3.016139}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1845233870
@@ -12199,6 +12259,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 652687974309965954, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 652687974309965954, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064614440394856260, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
+      propertyPath: deactivateIsShootingSec
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5493231018737906248, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
       propertyPath: m_RootOrder
       value: 2
