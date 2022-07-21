@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] AudioClip pistolShotSFX;
+    [SerializeField] AudioClip bounceSFX;
     [SerializeField] AudioClip deathSFX;
 
     SpriteRenderer playerSprite;
@@ -178,6 +179,7 @@ public class PlayerController : MonoBehaviour
         //We can deactivate controls through playerInput component instead of bool isAlive
         //playerInput.DeactivateInput();
         playerAnimator.SetTrigger("Dying");
+        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position);
         playerSprite.color = deathColor;
         playerRB2D.velocity = deathKick;
 
@@ -194,5 +196,8 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             FindObjectOfType<GameSession>().SetScore(enemyKillValue);
         }
+
+        if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Bouncing")))
+            AudioSource.PlayClipAtPoint(bounceSFX, Camera.main.transform.position);
     }
 }

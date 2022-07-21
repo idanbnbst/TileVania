@@ -229,6 +229,7 @@ MonoBehaviour:
   deathKick: {x: 0, y: 30}
   deathColor: {r: 1, g: 0, b: 0.9607843, a: 1}
   pistolShotSFX: {fileID: 8300000, guid: 121f7e6b7b42bbf439dbcc86183801cd, type: 3}
+  bounceSFX: {fileID: 8300000, guid: 2959b92d3a98bd14392ff26d0e135dc5, type: 3}
   deathSFX: {fileID: 8300000, guid: 81941f4ed5514474db5e40f2ac8d1edb, type: 3}
 --- !u!82 &4796335035258219812
 AudioSource:
