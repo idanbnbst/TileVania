@@ -12259,18 +12259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 652687974309965954, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 652687974309965954, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3064614440394856260, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
-      propertyPath: deactivateIsShootingSec
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5493231018737906248, guid: ca25b495b751e9944b7ed6f0fda16a7b, type: 3}
       propertyPath: m_RootOrder
       value: 2

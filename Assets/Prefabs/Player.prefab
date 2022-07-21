@@ -218,6 +218,7 @@ MonoBehaviour:
   BoostedMoveSpeed: 7
   jumpForce: 25
   boostedJumpForce: 27
+  climbSpeed: 3
   scoreForBoost: 1500
   boostedColor: {r: 0.9411765, g: 0.94509804, b: 0, a: 1}
   bullet: {fileID: 7793263801326137161, guid: 5ae43badcdb73cb499a6272e46f96c6f, type: 3}
@@ -225,6 +226,7 @@ MonoBehaviour:
   deathKick: {x: 0, y: 30}
   deathColor: {r: 1, g: 0, b: 0.9607843, a: 1}
   enemyKillValue: 50
+  deactivateIsShootingSec: 0.5
 --- !u!1 &8544988181405539924
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +298,7 @@ SpriteRenderer:
   m_SortingLayerID: -1613430245
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ddddc85bde6a5a64c9652459bc5c3146, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -304,6 +306,6 @@ SpriteRenderer:
   m_Size: {x: 1.032258, y: 1.032258}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

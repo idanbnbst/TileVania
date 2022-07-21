@@ -101,18 +101,27 @@ public class PlayerController : MonoBehaviour
 
         if (value.isPressed)
         {
+            bool isShooting = playerAnimator.GetBool("isShooting");
+            if (isShooting)
+                return;
+
+            // If we want to make the player shoot as fast as he clicks the binded key, 
+            // we have to use this SetBool() before 'return;'
+            //playerAnimator.SetBool("isShooting", false);
+
             playerAnimator.SetBool("isShooting", true);
             Instantiate(bullet, gunTransform.position, transform.rotation);
             FindObjectOfType<GameSession>().DecreaseMagazineRounds();
-            StartCoroutine(DeactiveIsShooting());
+            StartCoroutine(DeactiveShooting());
         }
     }
 
-    IEnumerator DeactiveIsShooting()
+    IEnumerator DeactiveShooting()
     {
         yield return new WaitForSeconds(deactivateIsShootingSec);
         playerAnimator.SetBool("isShooting", false);
     }
+
     void Move()
     {
         if (!isAlive)
