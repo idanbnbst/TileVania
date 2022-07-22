@@ -8,6 +8,7 @@ public class PistolBullet : MonoBehaviour
     [SerializeField] float bulletSpeed = 20f;
     [SerializeField] float bulletDestroyTime = 1f;
     [SerializeField] int bulletHitPoints = 150;
+    [SerializeField] AudioClip enemyBulletImpactSFX;
     float xSpeed;
     Rigidbody2D bulletRB2D;
     PlayerController player;
@@ -36,6 +37,7 @@ public class PistolBullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            AudioSource.PlayClipAtPoint(enemyBulletImpactSFX, Camera.main.transform.position);
             Destroy(other.gameObject);
             DestroyBullet();
             FindObjectOfType<GameSession>().SetScore(bulletHitPoints);

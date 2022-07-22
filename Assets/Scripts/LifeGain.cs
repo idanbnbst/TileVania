@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LifeGain : MonoBehaviour
 {
-    [SerializeField] AudioClip pickupSFX;
+    [SerializeField] AudioClip gainLifeSFX;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(gainLifeSFX, Camera.main.transform.position);
             Destroy(gameObject);
             FindObjectOfType<GameSession>().IncreaseLife();
         }

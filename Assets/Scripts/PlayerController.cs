@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip pistolShotSFX;
     [SerializeField] AudioClip bounceSFX;
     [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip enemyImpactFromAbove;
 
     SpriteRenderer playerSprite;
     Rigidbody2D playerRB2D;
@@ -193,6 +194,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
+            AudioSource.PlayClipAtPoint(enemyImpactFromAbove, Camera.main.transform.position);
             Destroy(other.gameObject);
             FindObjectOfType<GameSession>().SetScore(enemyKillValue);
         }
