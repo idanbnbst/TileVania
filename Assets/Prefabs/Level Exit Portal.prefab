@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d397113fa031444b1862658a82170b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadNextLevelTimeSec: 2
+  reloadNextLevelTimeSec: 1
   exitSFX: {fileID: 8300000, guid: 8629de90b3b30974b989efeb8d06f6f7, type: 3}
 --- !u!82 &8420475686602858691
 AudioSource:

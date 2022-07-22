@@ -7,11 +7,13 @@ public class LevelExit : MonoBehaviour
     [Header("Invoke Level Delay")]
     [SerializeField] float reloadNextLevelTimeSec = 1f;
     [SerializeField] AudioClip exitSFX;
+    bool hasExit = false;
     void ReloadNextScene()
     {
         int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentBuildIndex + 1;
 
+        // Game Completed
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
             FindObjectOfType<GameSession>().ResetGameSession();
@@ -23,8 +25,9 @@ public class LevelExit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !hasExit)
         {
+            hasExit = true;
             AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
             Invoke("ReloadNextScene", reloadNextLevelTimeSec);
         }

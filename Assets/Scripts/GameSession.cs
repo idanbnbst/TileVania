@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class GameSession : MonoBehaviour
     [SerializeField] TextMeshProUGUI livesLabel;
     [SerializeField] TextMeshProUGUI scoreLabel;
     [SerializeField] TextMeshProUGUI magazineLabel;
+    [SerializeField] Text gameOverLabel;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip gameOverSFX;
     void Awake()
     {
         int numGameSessions = FindObjectsOfType<GameSession>().Length;
@@ -28,13 +32,21 @@ public class GameSession : MonoBehaviour
         livesLabel.text = numOfLives.ToString();
         scoreLabel.text = score.ToString();
         magazineLabel.text = magazine.ToString();
+        gameOverLabel.gameObject.SetActive(false);
     }
     public void ProcessPlayerDeath()
     {
         if (numOfLives > 1)
+        {
+            AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position);
             Invoke("DecreaseLife", reloadSceneTimeSec);
+        }
         else
+        {
+            AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+            gameOverLabel.gameObject.SetActive(true);
             Invoke("ResetGameSession", reloadSceneTimeSec);
+        }
     }
 
     public void IncreaseLife()
@@ -75,7 +87,6 @@ public class GameSession : MonoBehaviour
     }
     public void ResetGameSession()
     {
-        Debug.Log("Wasted!");
         FindObjectOfType<ScenePersist>().ResetScenePersist();
         SceneManager.LoadScene(0);
         Destroy(gameObject);
