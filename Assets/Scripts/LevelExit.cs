@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 public class LevelExit : MonoBehaviour
 {
     [Header("Invoke Level Delay")]
-    [SerializeField] float reloadNextLevelTimeSec = 1f;
+    [SerializeField] float reloadNextLevelTime = 1f;
+    [SerializeField] float restartGameTime = 2f;
+    [Header("SFX")]
     [SerializeField] AudioClip exitSFX;
+    [SerializeField] AudioClip winSFX;
     bool hasExit = false;
     void ReloadNextScene()
     {
@@ -16,6 +19,7 @@ public class LevelExit : MonoBehaviour
         // Game Completed
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
+            AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position);
             FindObjectOfType<GameSession>().ResetGameSession();
             return;
         }
@@ -28,8 +32,24 @@ public class LevelExit : MonoBehaviour
         if (other.tag == "Player" && !hasExit)
         {
             hasExit = true;
-            AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
-            Invoke("ReloadNextScene", reloadNextLevelTimeSec);
+
+            int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndex = currentBuildIndex + 1;
+            if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+            {
+                AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position);
+                Invoke("ReloadNextScene", restartGameTime);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
+                Invoke("ReloadNextScene", reloadNextLevelTime);
+            }
         }
+    }
+
+    public bool HasExit()
+    {
+        return hasExit;
     }
 }

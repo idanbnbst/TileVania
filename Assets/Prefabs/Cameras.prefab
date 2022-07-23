@@ -387,7 +387,7 @@ MonoBehaviour:
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 5
   m_FrequencyGain: 5
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
+  mNoiseOffsets: {x: 401.6137, y: 13.601929, z: -505.20132}
 --- !u!1 &4693531817823184351
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +515,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4693531818317274326}
   - component: {fileID: 4693531818317274325}
-  - component: {fileID: 83882969}
   m_Layer: 0
   m_Name: State Driven Camera
   m_TagString: Untagged
@@ -596,24 +595,17 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 11400000, guid: b426d74c2ac3f314b853a952d6ae8001, type: 2}
-  m_ParentHash: []
---- !u!114 &83882969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4693531818317274327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
+  m_ParentHash:
+  - m_Hash: -397766897
+    m_ParentHash: 756556552
+  - m_Hash: 256545655
+    m_ParentHash: 756556552
+  - m_Hash: -725336713
+    m_ParentHash: 756556552
+  - m_Hash: -1546996312
+    m_ParentHash: 756556552
+  - m_Hash: -2049208207
+    m_ParentHash: 756556552
 --- !u!1 &4693531818575167381
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4693531818664514335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.042414, y: -1.3082862, z: -10}
+  m_LocalPosition: {x: -12.048412, y: -1.431355, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4693531818052286885}

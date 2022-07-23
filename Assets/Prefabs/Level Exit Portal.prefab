@@ -123,8 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d397113fa031444b1862658a82170b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadNextLevelTimeSec: 1
+  reloadNextLevelTime: 1
+  restartGameTime: 2
   exitSFX: {fileID: 8300000, guid: 8629de90b3b30974b989efeb8d06f6f7, type: 3}
+  winSFX: {fileID: 8300000, guid: 3ba1f329723c5c540a8c5b065a0fb90a, type: 3}
 --- !u!82 &8420475686602858691
 AudioSource:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] int score = 0;
     [SerializeField] int scoreLose = 200;
     [SerializeField] int magazine = 10;
-    [SerializeField] float reloadSceneTimeSec = 1.5f;
+    [SerializeField] float reloadSceneTime = 2f;
     [SerializeField] TextMeshProUGUI livesLabel;
     [SerializeField] TextMeshProUGUI scoreLabel;
     [SerializeField] TextMeshProUGUI magazineLabel;
@@ -39,13 +39,13 @@ public class GameSession : MonoBehaviour
         if (numOfLives > 1)
         {
             AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position);
-            Invoke("DecreaseLife", reloadSceneTimeSec);
+            Invoke("DecreaseLife", reloadSceneTime);
         }
         else
         {
             AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
             gameOverLabel.gameObject.SetActive(true);
-            Invoke("ResetGameSession", reloadSceneTimeSec);
+            Invoke("ResetGameSession", reloadSceneTime);
         }
     }
 

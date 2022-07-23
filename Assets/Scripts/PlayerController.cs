@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     //PlayerInput playerInput;
     Vector2 moveInput;
-    bool isAlive = true;
+    bool isAlive = true, boostMode = false;
     float moveSpeed;
     [Header("Forces")]
     [SerializeField] float baseGravityScale;
@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
     [Header("SFX")]
     [SerializeField] AudioClip pistolShotSFX;
     [SerializeField] AudioClip bounceSFX;
-    [SerializeField] AudioClip enemyImpactFromAbove;
+    [SerializeField] AudioClip enemyImpactFromAboveSFX;
+    [SerializeField] AudioClip boostModeSFX;
 
     SpriteRenderer playerSprite;
     Rigidbody2D playerRB2D;
@@ -87,9 +88,17 @@ public class PlayerController : MonoBehaviour
 
         int score = FindObjectOfType<GameSession>().GetScore();
         if (score < scoreForBoost)
+        {
+            boostMode = false;
             playerRB2D.velocity += new Vector2(0f, jumpForce);
+        }
         else
         {
+            if (!boostMode) // Play boostMode SFX only once
+            {
+                boostMode = true;
+                AudioSource.PlayClipAtPoint(boostModeSFX, Camera.main.transform.position);
+            }
             playerRB2D.velocity += new Vector2(0f, boostedJumpForce);
             playerSprite.color = boostedColor;
         }
@@ -128,13 +137,21 @@ public class PlayerController : MonoBehaviour
             return;
 
         int score = FindObjectOfType<GameSession>().GetScore();
-        if (score > scoreForBoost)
+        if (score < scoreForBoost)
         {
+            boostMode = false;
+            moveSpeed = defaultMoveSpeed;
+        }
+        else
+        {
+            if (!boostMode) // Play boostMode SFX only once
+            {
+                boostMode = true;
+                AudioSource.PlayClipAtPoint(boostModeSFX, Camera.main.transform.position);
+            }
             moveSpeed = BoostedMoveSpeed;
             playerSprite.color = boostedColor;
         }
-        else
-            moveSpeed = defaultMoveSpeed;
 
         // Make player move horizontally
         Vector2 horizontalVelocity = new Vector2(moveInput.x * moveSpeed, playerRB2D.velocity.y);
@@ -175,6 +192,10 @@ public class PlayerController : MonoBehaviour
         if (!playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards")))
             return;
 
+        bool hasExit = FindObjectOfType<LevelExit>().HasExit();
+        if (hasExit)
+            return;
+
         isAlive = false;
         //We can deactivate controls through playerInput component instead of bool isAlive
         //playerInput.DeactivateInput();
@@ -192,7 +213,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
-            AudioSource.PlayClipAtPoint(enemyImpactFromAbove, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(enemyImpactFromAboveSFX, Camera.main.transform.position);
             Destroy(other.gameObject);
             FindObjectOfType<GameSession>().SetScore(enemyKillValue);
         }
