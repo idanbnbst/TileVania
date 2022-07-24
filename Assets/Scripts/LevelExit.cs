@@ -19,7 +19,6 @@ public class LevelExit : MonoBehaviour
         // Game Completed
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
-            AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position);
             FindObjectOfType<GameSession>().ResetGameSession();
             return;
         }
@@ -38,6 +37,7 @@ public class LevelExit : MonoBehaviour
             if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
             {
                 AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position);
+                FindObjectOfType<GameSession>().DisplayEndScreen();
                 Invoke("ReloadNextScene", restartGameTime);
             }
             else

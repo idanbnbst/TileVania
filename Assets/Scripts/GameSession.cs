@@ -17,6 +17,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreLabel;
     [SerializeField] TextMeshProUGUI magazineLabel;
     [SerializeField] Text gameOverLabel;
+    [SerializeField] Text endScreenLabel;
     [SerializeField] AudioClip deathSFX;
     [SerializeField] AudioClip gameOverSFX;
     void Awake()
@@ -33,6 +34,7 @@ public class GameSession : MonoBehaviour
         scoreLabel.text = score.ToString();
         magazineLabel.text = magazine.ToString();
         gameOverLabel.gameObject.SetActive(false);
+        endScreenLabel.gameObject.SetActive(false);
     }
     public void ProcessPlayerDeath()
     {
@@ -84,6 +86,11 @@ public class GameSession : MonoBehaviour
     {
         magazine--;
         magazineLabel.text = magazine.ToString();
+    }
+
+    public void DisplayEndScreen()
+    {
+        endScreenLabel.gameObject.SetActive(true);
     }
     public void ResetGameSession()
     {

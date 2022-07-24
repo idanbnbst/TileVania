@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
     Animator playerAnimator;
     CapsuleCollider2D playerBodyCollider;
     BoxCollider2D playerFeetCollider;
-
     void Start()
     {
         //playerInput = GetComponent<PlayerInput>();
@@ -124,13 +123,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DeactiveShooting());
         }
     }
-
     IEnumerator DeactiveShooting()
     {
         yield return new WaitForSeconds(fireRate);
         playerAnimator.SetBool("isShooting", false);
     }
-
     void Move()
     {
         if (!isAlive)
@@ -205,7 +202,6 @@ public class PlayerController : MonoBehaviour
 
         FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
-
     void OnCollisionEnter2D(Collision2D other)
     {
         if (!isAlive)
