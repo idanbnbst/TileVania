@@ -120,10 +120,10 @@ public class PlayerController : MonoBehaviour
             AudioSource.PlayClipAtPoint(pistolShotSFX, Camera.main.transform.position);
             Instantiate(bullet, gunTransform.position, transform.rotation);
             FindObjectOfType<GameSession>().DecreaseMagazineRounds();
-            StartCoroutine(DeactiveShooting());
+            StartCoroutine(DeactivateShootingAnimation());
         }
     }
-    IEnumerator DeactiveShooting()
+    IEnumerator DeactivateShootingAnimation()
     {
         yield return new WaitForSeconds(fireRate);
         playerAnimator.SetBool("isShooting", false);
