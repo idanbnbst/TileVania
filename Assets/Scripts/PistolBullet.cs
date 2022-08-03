@@ -23,12 +23,10 @@ public class PistolBullet : MonoBehaviour
     {
         Shoot();
     }
-
     void Shoot()
     {
         bulletRB2D.velocity = new Vector2(xSpeed, 0f);
     }
-
     void DestroyBullet()
     {
         Destroy(gameObject);

@@ -14,12 +14,10 @@ public class EnemyController : MonoBehaviour
     {
         Move();
     }
-
     void Move()
     {
         enemyRB2D.velocity = new Vector2(moveSpeed, 0f);
     }
-
     void FlipEnemySprite()
     {
         moveSpeed = -moveSpeed;
